@@ -46,13 +46,18 @@ class MeetupController {
     }
 
     const user_id = req.userId;
+    const { file_id } = req.body;
 
     const meetup = await Meetup.create({
       ...req.body,
       user_id,
     });
 
-    return res.json(meetup);
+    return res.json({
+      user_id,
+      file_id,
+      meetup,
+    });
   }
 
   async update(req, res) {
